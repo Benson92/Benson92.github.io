@@ -206,7 +206,6 @@ $(document).ready(function () {
 
     $('#add-to-cal').html(myCalendar);
 
-
     /********************** RSVP **********************/
     $('#rsvp-form').on('submit', function (e) {
         e.preventDefault();
@@ -214,14 +213,24 @@ $(document).ready(function () {
 
         $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-        if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
-            && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
+        var inviteCode = MD5($('#invite_code').val());
+
+        var inviteCodeHashes = [
+            'e6d8545daa42d5ced125a4bf747b3688', // MD5 hash for invite code 1
+            '7c4bf50b715509a963ce81b168ca674b',  // MD5 hash for invite code 2
+            '4c2e5eaae9152079b9e95845750bb9ab',
+            '191c62d342811d1a0d3d0528ec35cd2d',
+            'fc0cc602ce843b5393684a7fc1b566bc',
+            '84e2d85ac232c681a641da1ec663888c'
+        ];
+
+        if (!inviteCodeHashes.includes(inviteCode)) {
             $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
         } else {
             if ($('#coming-dropdown').val() === '') {
                 $('#alert-wrapper').html(alert_markup('danger', '<strong>Oops!</strong> Please select whether you are coming or not.'));
             } else {
-                $.post('https://script.google.com/macros/s/AKfycbybzriApv2nom-h7Gc3dtO2tztwCZJzhO35emyoD2Et513Gl7H65fFNpWh1QmDvDQ/exec', data)
+                $.post('https://script.google.com/macros/s/AKfycbyn3GIgg4W8VKqXjnqRwUW75iXG9alkDVm7Mygd2blLFIULQhNnWIJ_SRiKal7enUsZ/exec', data)
                     .done(function (data) {
                         console.log(data);
                         if (data.result === "error") {
@@ -239,6 +248,14 @@ $(document).ready(function () {
         }
     });
 
+    $('#dietary-requirements-dropdown').change(function() {
+        var selectedOption = $(this).val();
+        if (selectedOption === 'Yes') {
+          $('#dietary-requirements-field').show();
+        } else {
+          $('#dietary-requirements-field').hide();
+        }
+      });
 
 });
 
