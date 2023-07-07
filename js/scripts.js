@@ -187,14 +187,14 @@ $(document).ready(function () {
             title: "Brayden and Leilani's Wedding",
 
             // Event start date
-            start: new Date('Jan 04, 2024 10:00AM'),
+            start: new Date('Jan 04, 2024 10:00'),
 
             // Event duration (IN MINUTES)
             // duration: 120,
 
             // You can also choose to set an end time
             // If an end time is set, this will take precedence over duration
-            end: new Date('Jan 04, 2024 05:00PM'),
+            end: new Date('Jan 04, 2024 17:00'),
 
             // Event Address
             address: 'HALEIWA JOES HAIKU GARDENS, 46-336 Haiku Rd, Kaneohe, HI 96744, United States',
