@@ -218,22 +218,27 @@ $(document).ready(function () {
             && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
             $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
         } else {
-            $.post('https://script.google.com/macros/s/AKfycbybzriApv2nom-h7Gc3dtO2tztwCZJzhO35emyoD2Et513Gl7H65fFNpWh1QmDvDQ/exec', data)
-            .done(function (data) {
-                console.log(data);
-                    if (data.result === "error") {
-                        $('#alert-wrapper').html(alert_markup('danger', data.message));
-                    } else {
-                        $('#alert-wrapper').html('');
-                        $('#rsvp-modal').modal('show');
-                    }
-                })
-                .fail(function (data) {
-                    console.log(data);
-                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
-                });
+            if ($('#coming-dropdown').val() === '') {
+                $('#alert-wrapper').html(alert_markup('danger', '<strong>Oops!</strong> Please select whether you are coming or not.'));
+            } else {
+                $.post('https://script.google.com/macros/s/AKfycbybzriApv2nom-h7Gc3dtO2tztwCZJzhO35emyoD2Et513Gl7H65fFNpWh1QmDvDQ/exec', data)
+                    .done(function (data) {
+                        console.log(data);
+                        if (data.result === "error") {
+                            $('#alert-wrapper').html(alert_markup('danger', data.message));
+                        } else {
+                            $('#alert-wrapper').html('');
+                            $('#rsvp-modal').modal('show');
+                        }
+                    })
+                    .fail(function (data) {
+                        console.log(data);
+                        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+                    });
+            }
         }
     });
+
 
 });
 
