@@ -221,7 +221,8 @@ $(document).ready(function () {
             '4c2e5eaae9152079b9e95845750bb9ab',
             '191c62d342811d1a0d3d0528ec35cd2d',
             'fc0cc602ce843b5393684a7fc1b566bc',
-            '84e2d85ac232c681a641da1ec663888c'
+            '84e2d85ac232c681a641da1ec663888c',
+            'eb06b9db06012a7a4179b8f3cb5384d3'
         ];
 
         if (!inviteCodeHashes.includes(inviteCode)) {
@@ -230,7 +231,7 @@ $(document).ready(function () {
             if ($('#coming-dropdown').val() === '') {
                 $('#alert-wrapper').html(alert_markup('danger', '<strong>Oops!</strong> Please select whether you are coming or not.'));
             } else {
-                $.post('https://script.google.com/macros/s/AKfycbyn3GIgg4W8VKqXjnqRwUW75iXG9alkDVm7Mygd2blLFIULQhNnWIJ_SRiKal7enUsZ/exec', data)
+                $.post('https://script.google.com/macros/s/AKfycbxwYSDYSjuU15gH_9HlMxkGOh8Lvu3298WDQSfkxGkJheozvO03CxN0O78dCNcoFrA/exec', data)
                     .done(function (data) {
                         console.log(data);
                         if (data.result === "error") {
